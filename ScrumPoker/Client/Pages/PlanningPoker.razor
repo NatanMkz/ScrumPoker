@@ -1,0 +1,41 @@
+﻿@page "/planningpoker"
+@using System.Collections.Generic
+
+<h3>Planning Poker</h3>
+
+@if (selectedCard == null)
+{
+    <div class="card-container">
+        @foreach (var card in cards)
+        {
+            <button class="card" @onclick="() => SelectCard(card)">@card</button>
+        }
+    </div>
+}
+else
+{
+    <div class="card-maximized">
+        <button class="card-selected" @onclick="ClearSelection">@selectedCard</button>        
+    </div>
+}
+
+@code {
+    private List<string> cards = new List<string> { "0", "1", "2", "3", "5", "8", "13", "21", "34", "144", "55", "89", "?", "\u221E", "☕" };
+    private string? selectedCard;
+
+    //protected override void OnInitialized()
+    //{
+    //    styles.Add("site.css");
+    //    FileStyleUriParser.
+    //}
+
+    private void SelectCard(string card)
+    {
+        selectedCard = card;
+    }
+
+    private void ClearSelection()
+    {
+        selectedCard = null;
+    }
+}
